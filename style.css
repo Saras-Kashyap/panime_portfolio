@@ -380,10 +380,11 @@ h1, h2, h3, h4 {
 
 .hero-name {
   font-family: var(--font-title);
-  font-size: 4.5rem;
+  font-size: clamp(2rem, 5vw, 4.5rem);
   color: var(--color-white);
   line-height: 1.05;
   margin-bottom: 15px;
+  word-break: break-word;
   text-shadow: 
     -3px -3px 0 var(--color-ink),  
      3px -3px 0 var(--color-ink),
@@ -397,7 +398,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-weight: 900;
   font-style: italic;
-  font-size: 1.8rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
   color: var(--color-ink);
   margin-bottom: 25px;
   display: flex;
@@ -610,11 +611,13 @@ h1, h2, h3, h4 {
 
 .section-title {
   font-family: var(--font-title);
-  font-size: 3.5rem;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
   margin-bottom: 10px;
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .section-title::after {
@@ -623,6 +626,7 @@ h1, h2, h3, h4 {
   left: 3px;
   top: 3px;
   z-index: -1;
+  pointer-events: none;
 }
 
 .text-gold {
@@ -1260,12 +1264,15 @@ h1, h2, h3, h4 {
 .showdown-box {
   background: var(--color-white);
   border: 6px solid var(--color-ink);
-  padding: 60px 40px;
+  padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
   position: relative;
   box-shadow: var(--shadow-ink);
   max-width: 900px;
+  width: 100%;
   margin: auto;
   text-align: center;
+  /* Allow tooltips above buttons to not be clipped */
+  overflow: visible;
 }
 
 .showdown-bg-wrapper {
@@ -1277,6 +1284,7 @@ h1, h2, h3, h4 {
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  border-radius: inherit;
 }
 
 .showdown-bg-img {
@@ -1329,18 +1337,20 @@ h1, h2, h3, h4 {
 
 .showdown-header {
   margin-bottom: 20px;
+  position: relative;
+  z-index: 10;
 }
 
 .showdown-box .section-title {
   font-family: var(--font-body);
   font-weight: 900;
-  font-size: 3rem;
-  letter-spacing: 4px;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  letter-spacing: clamp(1px, 0.5vw, 4px);
 }
 
 .showdown-text {
   font-family: var(--font-mono);
-  font-size: 1.15rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
   color: var(--color-sepia);
   margin-bottom: 50px;
   max-width: 650px;
@@ -1353,9 +1363,11 @@ h1, h2, h3, h4 {
 .showdown-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 200px 80px;
-  max-width: 800px;
-  margin: 150px auto 0 auto;
+  gap: 100px 30px;   /* row-gap leaves room for tooltip above each btn */
+  max-width: 700px;
+  margin: 30px auto 0 auto;
+  position: relative;
+  z-index: 10;
 }
 
 .showdown-btn {
@@ -1495,116 +1507,336 @@ h1, h2, h3, h4 {
   100% { opacity: 0; transform: translate(-50%, -100px) scale(0.9) rotate(-5deg); }
 }
 
-/* -------------------------------------------------------------
+/* =====================================================
  * 11. RESPONSIVE MEDIA QUERIES
- * ------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .hero-name {
-    font-size: 3.5rem;
-  }
-  
+ * ===================================================== */
+
+/* ── 1100px: Small laptops & large tablets ── */
+@media (max-width: 1100px) {
+
+  /* Stats: 2-col layout */
   .stats-grid-container {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
-  
+
   .manga-stats-showcase {
     grid-column: span 2;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .manga-panel-box {
+    flex: 1 1 calc(33% - 10px);
+    min-width: 0;
+  }
+
+  /* Showdown buttons fit in 2-col without tooltip overflow */
+  .showdown-buttons {
+    gap: 110px 30px;
   }
 }
 
+/* ── 768px: Tablets & large phones ── */
 @media (max-width: 768px) {
+
+  /* ---- Nav ---- */
   .manga-nav-header {
-    padding: 10px 20px;
+    padding: 10px 15px;
+    flex-wrap: nowrap;
+    gap: 6px;
   }
-  
+
+  .header-logo {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    flex-shrink: 0;
+  }
+
   .nav-links {
-    gap: 15px;
+    gap: 5px;
+    flex-wrap: nowrap;
   }
-  
+
   .nav-link {
-    font-size: 0.9rem;
-    padding: 3px 5px;
+    font-size: 0.78rem;
+    padding: 3px 4px;
   }
-  
+
+  /* hide the decorative [] pseudos on mobile nav to save space */
+  .nav-link::before,
+  .nav-link::after {
+    display: none;
+  }
+
+  .theme-toggle-btn {
+    padding: 5px 7px;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Hero ---- */
+  .hero-section {
+    padding: 85px 15px 60px;
+  }
+
   .hero-panel {
     grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 25px;
+    gap: 20px;
+    padding: 20px 18px;
   }
-  
-  .hero-portrait {
-    max-width: 250px;
+
+  .hero-image-wrapper {
+    max-width: 200px;
   }
-  
+
   .hero-name {
-    font-size: 3rem;
     text-align: center;
   }
-  
+
   .hero-subtitle {
-    font-size: 1.4rem;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
   }
-  
+
   .hero-tagline {
     text-align: center;
     border-left: none;
     border-top: 3px solid var(--color-gold);
     padding-left: 0;
-    padding-top: 15px;
+    padding-top: 12px;
   }
-  
+
   .hero-badges {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  
+
+  /* ---- Stats ---- */
+  .stats-section {
+    padding: 90px 15px 70px;
+  }
+
+  .section-tagline {
+    font-size: 0.92rem;
+    margin-bottom: 30px;
+  }
+
   .stats-grid-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .manga-stats-showcase {
-    grid-column: span 1;
-    flex-direction: column;
-  }
-  
-  .timeline-card-wrapper {
-    width: 100%;
-    margin-bottom: 80px;
-    padding-left: 50px !important;
-    padding-right: 0 !important;
-    left: 0 !important;
-  }
-  
-  .left-card .timeline-node,
-  .right-card .timeline-node {
-    left: -15px !important;
-    top: 25px !important;
-  }
-  
-  .svg-track-line-container {
-    left: 10px;
-    width: 40px;
-  }
-  
-  .track-path-svg path {
-    d: path('M20,0 L20,1200'); /* Straighten path for mobile */
-  }
-  
-  .showdown-buttons {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
-  .manga-credits {
-    grid-template-columns: 1fr;
-    gap: 10px;
+
+  .manga-stats-showcase {
+    grid-column: span 1;
+    flex-direction: column;
+    gap: 15px;
   }
-  
+
+  .manga-panel-box {
+    flex: none;
+    width: 100%;
+    min-height: 150px;
+  }
+
+  .stand-tabs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stand-tab-btn {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 80px;
+  }
+
+  /* ---- Timeline ---- */
+  .timeline-section {
+    padding: 85px 15px 60px;
+  }
+
+  .timeline-card-wrapper {
+    width: 100% !important;
+    left: 0 !important;
+    margin-bottom: 60px;
+    padding-left: 55px !important;
+    padding-right: 5px !important;
+  }
+
+  .left-card .timeline-node,
+  .right-card .timeline-node {
+    left: -10px !important;
+    right: auto !important;
+    top: 20px !important;
+  }
+
+  .svg-track-line-container {
+    left: 8px;
+    width: 35px;
+  }
+
+  .card-panel-image {
+    height: 160px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  /* ---- Contact / Showdown ---- */
+  .contact-section {
+    padding: 90px 12px 60px;
+  }
+
+  .showdown-box {
+    padding: 30px 18px 40px;
+  }
+
+  /* On mobile, collapse to 1-col and disable tooltips */
+  .showdown-buttons {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+    max-width: 420px;
+  }
+
+  .showdown-btn {
+    font-size: 1rem;
+    padding: 14px 16px;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  /* Completely hide the hover tooltips on mobile — they break layout */
+  .social-preview-tooltip {
+    display: none !important;
+  }
+
+  /* ---- Footer ---- */
   .bottom-bar {
     flex-direction: column-reverse;
-    gap: 15px;
-    padding: 20px;
+    gap: 12px;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  .manga-credits {
+    gap: 12px;
+    justify-content: center;
+  }
+}
+
+/* ── 480px: Small phones ── */
+@media (max-width: 480px) {
+
+  /* Nav — keep everything on one line at tiny sizes */
+  .manga-nav-header {
+    padding: 8px 10px;
+  }
+
+  .header-logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 0.7rem;
+    padding: 2px 3px;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding: 75px 12px 50px;
+  }
+
+  .hero-panel {
+    padding: 16px 14px;
+    gap: 16px;
+  }
+
+  .hero-image-wrapper {
+    max-width: 160px;
+  }
+
+  .hero-name {
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .sub-line-divider {
+    font-size: 1.4rem;
+  }
+
+  .manga-badge {
+    font-size: 0.68rem;
+    padding: 4px 9px;
+  }
+
+  /* Stats */
+  .stats-section {
+    padding: 75px 12px 55px;
+  }
+
+  .stand-tab-btn {
+    flex: 1 1 100%;
+  }
+
+  .stand-card-title {
+    font-size: 1.1rem;
+  }
+
+  .radar-chart-container {
+    max-width: 280px;
+  }
+
+  /* Timeline */
+  .timeline-section {
+    padding: 70px 10px 50px;
+  }
+
+  .card-panel-image {
+    height: 130px;
+  }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  /* Contact */
+  .contact-section {
+    padding: 75px 10px 50px;
+  }
+
+  .showdown-buttons {
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .showdown-btn {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  /* Mob limiter */
+  .mob-limiter-container {
+    top: 66px;
+    right: 6px;
+    padding: 4px 8px;
+  }
+
+  .limiter-bar-bg {
+    width: 65px;
+    height: 10px;
   }
 }
 
@@ -1693,17 +1925,8 @@ h1, h2, h3, h4 {
   100% { transform: scale(1.08); }
 }
 
-@media (max-width: 768px) {
-  .mob-limiter-container {
-    top: 75px;
-    right: 10px;
-    padding: 6px 10px;
-  }
-  .limiter-bar-bg {
-    width: 80px;
-    height: 10px;
-  }
-}
+
+
 
 /* Immersive Showdown Speed Lines Canvas */
 .showdown-speed-canvas {
@@ -1852,34 +2075,8 @@ h1, h2, h3, h4 {
   letter-spacing: 0.5px;
 }
 
-/* Ensure mobile layout doesn't overlap weirdly and stacks cleanly by default */
-@media (max-width: 768px) {
-  .showdown-buttons {
-    margin-top: 30px !important;
-  }
-  .showdown-btn {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 20px 15px;
-    height: auto;
-  }
-  .social-preview-tooltip {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    transform: none !important;
-    width: 100%;
-    margin-top: 15px;
-    box-shadow: none;
-    border: 2px solid var(--color-ink);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .social-preview-tooltip::after,
-  .social-preview-tooltip::before {
-    display: none; /* Hide speech bubble arrows on mobile */
-  }
-}
+
+
 
 /* Theme Toggle Button Styling */
 .theme-toggle-btn {
@@ -1935,3 +2132,5 @@ h1, h2, h3, h4 {
 [data-theme="light"] .theme-icon-moon {
   display: none !important;
 }
+
+
