@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saras Kashyap | AI Engineer & Fullstack Developer</title>
+  <meta name="description" content="Portfolio of Saras Kashyap: AI Engineer and Fullstack Developer specialising in LLMs, RAG, NLP, and full-stack web. Heavily inspired by JoJo's Bizarre Adventure Part 7: Steel Ball Run art style.">
+  <meta name="author" content="Saras Kashyap">
+  <meta name="keywords" content="Saras Kashyap, AI Engineer, Fullstack Developer, LLM, RAG, Python, React, ML, NLP">
+  
+  <!-- Fonts: Rye for titles, Playfair Display for dramatic serifs, Special Elite for typewriter, Outfit for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Outfit:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@1,900&family=Rye&family=Special+Elite&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="paper-bg">
+
+  <!-- Mob Limiter Sticky Bar -->
+  <div class="mob-limiter-container">
+    <span class="limiter-label">MOB LIMITER</span>
+    <div class="limiter-bar-bg">
+      <div class="limiter-bar-fill" id="limiter-fill"></div>
+    </div>
+    <span class="limiter-percent" id="limiter-percent">0%</span>
+  </div>
+
+  <!-- Audio elements for dramatic manga effects (optional/ambient or sound lines visual effects) -->
+  <div id="manga-speed-lines" class="speed-lines-overlay"></div>
+  <div id="sfx-popup-container" class="sfx-container"></div>
+
+  <!-- Header / Navigation (Stylized Manga Banner) -->
+  <header class="manga-nav-header">
+    <div class="header-logo" data-text="SBR">SBR</div>
+    <nav class="nav-links">
+      <a href="#hero" class="nav-link">Stand</a>
+      <a href="#stats" class="nav-link">Stats</a>
+      <a href="#timeline" class="nav-link">Race Track</a>
+      <a href="#contact" class="nav-link">Showdown</a>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="manga-screentone"></div>
+    
+    <div class="hero-content">
+      <!-- Star / Comic Panel Border -->
+      <div class="hero-panel">
+        <div class="hero-image-wrapper">
+          <img src="./assect/80361174595084386.jpg" alt="Saras Kashyap Portrait" class="hero-portrait">
+        </div>
+
+        <div class="hero-text-panel">
+          <h1 class="hero-name">Saras Kashyap</h1>
+          <h2 class="hero-subtitle">
+            <span class="sub-line-1">AI Engineer</span>
+            <span class="sub-line-divider">&amp;</span>
+            <span class="sub-line-2">Fullstack Developer</span>
+          </h2>
+          <p class="hero-tagline">"My heart and actions are utterly unclouded... They are all those of 'Justice'."</p>
+          
+          <div class="hero-badges">
+            <span class="manga-badge gold-badge">STAND USER</span>
+            <span class="manga-badge pink-badge">PART 7: STEEL BALL RUN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Zipper Reveal Border Transition -->
+    <div class="zipper-transition-bar" id="zipper-reveal-trigger">
+      <div class="zipper-track">
+        <!-- SVG teeth -->
+        <svg class="zipper-teeth-svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+          <path class="zipper-tooth-top" d="M0,10 L30,10 L35,20 L45,20 L50,10 L80,10 L85,20 L95,20 L100,10 L130,10 L135,20 L145,20 L150,10 L180,10 L185,20 L195,20 L200,10 L230,10 L235,20 L245,20 L250,10 L280,10 L285,20 L295,20 L300,10 L330,10 L335,20 L345,20 L350,10 L380,10 L385,20 L395,20 L400,10 L430,10 L435,20 L445,20 L450,10 L480,10 L485,20 L495,20 L500,10 L530,10 L535,20 L545,20 L550,10 L580,10 L585,20 L595,20 L600,10 L630,10 L635,20 L645,20 L650,10 L680,10 L685,20 L695,20 L700,10 L730,10 L735,20 L745,20 L750,10 L780,10 L785,20 L795,20 L800,10 L830,10 L835,20 L845,20 L850,10 L880,10 L885,20 L895,20 L900,10 L930,10 L935,20 L945,20 L950,10 L980,10 L985,20 L995,20 L1000,10 L1030,10 L1035,20 L1045,20 L1050,10 L1080,10 L1085,20 L1095,20 L1100,10 L1130,10 L1135,20 L1145,20 L1150,10 L1180,10 L1185,20 L1195,20 L1200,10 L1230,10 L1235,20 L1245,20 L1250,10 L1280,10 L1285,20 L1295,20 L1300,10 L1330,10 L1335,20 L1345,20 L1350,10 L1380,10 L1385,20 L1395,20 L1400,10 L1430,10 L1435,20 L1440,20 L1440,0 L0,0 Z" fill="#111" />
+          <path class="zipper-tooth-bottom" d="M0,30 L15,30 L20,20 L30,20 L35,30 L65,30 L70,20 L80,20 L85,30 L115,30 L120,20 L130,20 L135,30 L165,30 L170,20 L180,20 L185,30 L215,30 L220,20 L230,20 L235,30 L265,30 L270,20 L280,20 L285,30 L315,30 L320,20 L330,20 L335,30 L365,30 L370,20 L380,20 L385,30 L415,30 L420,20 L430,20 L435,30 L465,30 L470,20 L480,20 L485,30 L515,30 L520,20 L530,20 L535,30 L565,30 L570,20 L580,20 L585,30 L615,30 L620,20 L630,20 L635,30 L665,30 L670,20 L680,20 L685,30 L715,30 L720,20 L730,20 L735,30 L765,30 L770,20 L780,20 L785,30 L815,30 L820,20 L830,20 L835,30 L865,30 L870,20 L880,20 L885,30 L915,30 L920,20 L930,20 L935,30 L965,30 L970,20 L980,20 L985,30 L1015,30 L1020,20 L1030,20 L1035,30 L1065,30 L1070,20 L1080,20 L1085,30 L1115,30 L1120,20 L1130,20 L1135,30 L1165,30 L1170,20 L1180,20 L1185,30 L1215,30 L1220,20 L1230,20 L1235,30 L1265,30 L1270,20 L1280,20 L1285,30 L1315,30 L1320,20 L1330,20 L1335,30 L1365,30 L1370,20 L1380,20 L1385,30 L1415,30 L1420,20 L1430,20 L1435,30 L1440,30 L1440,40 L0,40 Z" fill="#111" />
+        </svg>
+        <div class="zipper-line"></div>
+      </div>
+      <!-- Interactive Zipper Pull (clickable and drag-responsive) -->
+      <div class="zipper-pull" id="zipper-pull">
+        <div class="pull-tab">
+          <svg class="pull-tab-svg" viewBox="0 0 100 150">
+            <!-- Zipper slider body -->
+            <rect x="25" y="10" width="50" height="40" rx="10" fill="#d4af37" stroke="#111" stroke-width="4" />
+            <!-- Zipper pull loop -->
+            <circle cx="50" cy="50" r="15" fill="none" stroke="#d4af37" stroke-width="8" />
+            <!-- Pull tag -->
+            <path d="M35,60 L65,60 L70,140 L30,140 Z" fill="#d4af37" stroke="#111" stroke-width="4" />
+            <!-- Star motif in the center of the tab -->
+            <polygon points="50,75 55,92 72,92 58,103 63,120 50,110 37,120 42,103 28,92 45,92" fill="#fff" stroke="#111" stroke-width="1.5" />
+          </svg>
+          <div class="zipper-hint">DRAG / CLICK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Skills Section (The Stats Grid) -->
+  <section id="stats" class="stats-section">
+    <!-- Diagonal hand-drawn board overlay -->
+    <div class="diagonal-divider-top">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,0 L1440,70 L1440,100 L0,100 Z" fill="#1c1816" />
+        <path d="M0,3 L1440,73" stroke="#ff69b4" stroke-width="4" stroke-dasharray="8 4" />
+      </svg>
+    </div>
+
+    <div class="section-container">
+      <h2 class="section-title text-gold" data-text="THE STATS GRID">THE STATS GRID</h2>
+      <p class="section-tagline">"Analyze your parameters. Discover your Stand's true capability."</p>
+
+      <div class="stats-grid-container">
+        <!-- Stand Panel Details (Left Side) -->
+        <div class="stand-detail-card">
+          <div class="stand-card-header">
+            <span class="manga-sound-effect sfx-small">ゴゴゴゴ</span>
+            <h3 class="stand-card-title">STAND PROFILE</h3>
+          </div>
+
+          <!-- Stand Tabs for Switching -->
+          <div class="stand-tabs">
+            <button class="stand-tab-btn active" data-stand="neural-storm">
+              <span class="tab-jp">神経の嵐</span>
+              <span class="tab-en">NEURAL STORM</span>
+            </button>
+            <button class="stand-tab-btn" data-stand="iron-will">
+              <span class="tab-jp">鉄の意志</span>
+              <span class="tab-en">IRON WILL</span>
+            </button>
+            <button class="stand-tab-btn" data-stand="salt-splash">
+              <span class="tab-jp">ソルトスプラッシュ</span>
+              <span class="tab-en">SALT SPLASH</span>
+            </button>
+          </div>
+
+          <div class="stand-info-box">
+            <!-- Neural Storm Content -->
+            <div id="neural-storm-info" class="stand-info-content active">
+              <div class="stand-meta">
+                <p><strong>Stand Master:</strong> Saras Kashyap</p>
+                <p><strong>Ability Type:</strong> Computational Intelligence &amp; ML Engineering</p>
+                <p><strong>Description:</strong> Harnesses deep network architecture, processing language structures and synthesising models with extreme precision. Excels in LLMs, RAG pipelines, OpenCV vision tasks, and AI agent workflows. Languages: Python, C++, JavaScript, C.</p>
+              </div>
+              <div class="stand-skills-list">
+                <div class="skill-pill">Large Language Models (LLMs)</div>
+                <div class="skill-pill">RAG &amp; Vector Databases</div>
+                <div class="skill-pill">Python (92/100 Power)</div>
+                <div class="skill-pill">OpenCV &amp; Computer Vision</div>
+                <div class="skill-pill">LM Studio &amp; Local AI</div>
+                <div class="skill-pill">AI Agent Workflows</div>
+              </div>
+            </div>
+
+            <!-- Iron Will Content -->
+            <div id="iron-will-info" class="stand-info-content">
+              <div class="stand-meta">
+                <p><strong>Stand Master:</strong> Saras Kashyap</p>
+                <p><strong>Ability Type:</strong> Fullstack Web &amp; Systems Engineering</p>
+                <p><strong>Description:</strong> Channels the power of modern web frameworks and systems tooling. Specialises in React, Next.js, MongoDB, Supabase, and Linux-based deployments. Operates with maximum code efficiency and clean architecture.</p>
+              </div>
+              <div class="stand-skills-list">
+                <div class="skill-pill">React &amp; Next.js</div>
+                <div class="skill-pill">MongoDB &amp; Supabase</div>
+                <div class="skill-pill">Git &amp; Linux</div>
+                <div class="skill-pill">3D Print &amp; Robotics</div>
+                <div class="skill-pill">Unity &amp; Blender</div>
+                <div class="skill-pill">Stable Diffusion</div>
+              </div>
+            </div>
+
+            <!-- Salt Splash Content -->
+            <div id="salt-splash-info" class="stand-info-content">
+              <div class="stand-meta">
+                <p><strong>Stand Master:</strong> Saras Kashyap</p>
+                <p><strong>Ability Type:</strong> Multilingual Communication &amp; Strategy</p>
+                <p><strong>Description:</strong> Speaks English, Hindi, and German — a true multi-realm communicator. Excels in bridging technical and creative domains through Adobe tools, strategic product thinking, and cross-cultural collaboration.</p>
+              </div>
+              <div class="stand-skills-list">
+                <div class="skill-pill">English (Native)</div>
+                <div class="skill-pill">Hindi (Native)</div>
+                <div class="skill-pill">German (Learning)</div>
+                <div class="skill-pill">Adobe Creative Suite</div>
+                <div class="skill-pill">Technical Strategy</div>
+                <div class="skill-pill">Cross-Cultural Collab</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stand Radar Chart (Center) -->
+        <div class="stand-chart-card">
+          <div class="radar-chart-container">
+            <svg class="radar-chart-svg" viewBox="0 0 400 400">
+              <defs>
+                <!-- Crosshatch patterns for inside the radar polygon -->
+                <pattern id="radar-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="#ff69b4" stroke-width="1.5" />
+                </pattern>
+                <pattern id="radar-bg-hatch" width="12" height="12" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="12" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+                </pattern>
+              </defs>
+
+              <!-- Chart Background hatch -->
+              <circle cx="200" cy="200" r="150" fill="url(#radar-bg-hatch)" />
+
+              <!-- Hexagon Grids -->
+              <polygon points="200,50 330,125 330,275 200,350 70,275 70,125" fill="none" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1.5" />
+              <polygon points="200,80 304,140 304,260 200,320 96,260 96,140" fill="none" stroke="rgba(212, 175, 55, 0.25)" stroke-width="1" stroke-dasharray="3,3" />
+              <polygon points="200,110 278,155 278,245 200,290 122,245 122,155" fill="none" stroke="rgba(212, 175, 55, 0.15)" stroke-width="1" />
+              <polygon points="200,140 252,170 252,230 200,260 148,230 148,170" fill="none" stroke="rgba(212, 175, 55, 0.1)" stroke-width="1" />
+
+              <!-- Axis Lines -->
+              <line x1="200" y1="50" x2="200" y2="350" stroke="rgba(212, 175, 55, 0.2)" stroke-width="1" />
+              <line x1="70" y1="125" x2="330" y2="275" stroke="rgba(212, 175, 55, 0.2)" stroke-width="1" />
+              <line x1="70" y1="275" x2="330" y2="125" stroke="rgba(212, 175, 55, 0.2)" stroke-width="1" />
+
+              <!-- Labels & Grades (Interactive updates) -->
+              <!-- Top: Power -->
+              <text x="200" y="32" class="chart-label" text-anchor="middle">POWER (破壊力)</text>
+              <text x="200" y="47" class="chart-grade" id="grade-power" text-anchor="middle">A</text>
+
+              <!-- Top-Right: Speed -->
+              <text x="345" y="115" class="chart-label" text-anchor="start">SPEED (スピード)</text>
+              <text x="345" y="130" class="chart-grade" id="grade-speed" text-anchor="start">A</text>
+
+              <!-- Bottom-Right: Range -->
+              <text x="345" y="285" class="chart-label" text-anchor="start">RANGE (射程距離)</text>
+              <text x="345" y="300" class="chart-grade" id="grade-range" text-anchor="start">B</text>
+
+              <!-- Bottom: Durability -->
+              <text x="200" y="372" class="chart-label" text-anchor="middle">DURABILITY (持持続性)</text>
+              <text x="200" y="387" class="chart-grade" id="grade-durability" text-anchor="middle">B</text>
+
+              <!-- Bottom-Left: Precision -->
+              <text x="55" y="285" class="chart-label" text-anchor="end">PRECISION (精密動作性)</text>
+              <text x="55" y="300" class="chart-grade" id="grade-precision" text-anchor="end">A</text>
+
+              <!-- Top-Left: Potential -->
+              <text x="55" y="115" class="chart-label" text-anchor="end">POTENTIAL (成長性)</text>
+              <text x="55" y="130" class="chart-grade" id="grade-potential" text-anchor="end">S</text>
+
+              <!-- The Data Polygon -->
+              <polygon id="radar-data-polygon" points="200,80 304,140 278,245 200,290 122,245 96,140" fill="url(#radar-hatch)" stroke="#ff69b4" stroke-width="4.5" filter="drop-shadow(0px 0px 8px rgba(255, 105, 180, 0.6))" />
+            </svg>
+            <div class="manga-screentone overlay-tone"></div>
+          </div>
+        </div>
+
+        <!-- Heavy Ink Shadow Manga Panel Card (Right Side) -->
+        <div class="manga-stats-showcase">
+          <div class="manga-panel-box box-1">
+            <div class="panel-tag">AI SYSTEMS</div>
+            <img src="./assect/15410823722530446.jpg" alt="Manga Line Art Border Accent" class="panel-background-img">
+            <div class="panel-body">
+              <span class="manga-sound-effect">ドドドド</span>
+              <h4>COGNITIVE MATRIX</h4>
+              <p>Direct implementation of transformer-based architectures and sequence-to-sequence mappings. Unlocking human-level inference paths.</p>
+            </div>
+          </div>
+          <div class="manga-panel-box box-2">
+            <div class="panel-tag">ATHLETICS</div>
+            <div class="panel-body">
+              <span class="manga-sound-effect pink-sfx">ズキュウウウン</span>
+              <h4>KINETIC IMPACT</h4>
+              <p>Rigorous strength conditioning, neural recruitment optimization, and explosive power outputs modeled via Olympic training parameters.</p>
+            </div>
+          </div>
+          <div class="manga-panel-box box-3">
+            <div class="panel-tag">ADVISORY</div>
+            <img src="./assect/mob psycho 100 _ reigen icon.jpg" alt="Reigen Arataka" class="panel-background-img">
+            <div class="panel-body">
+              <span class="manga-sound-effect blue-sfx">SALT SPLASH!</span>
+              <h4>SPIRITUAL STRATEGY</h4>
+              <p>Banishing project blockers using tactical product psychology, charismatic communication, and Reigen-styled technical advice.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements & Timeline (The SBR Race Track) -->
+  <section id="timeline" class="timeline-section">
+    <!-- Diagonal divider -->
+    <div class="diagonal-divider-middle">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,100 L1440,30 L1440,0 L0,0 Z" fill="#1c1816" />
+        <path d="M0,97 L1440,27" stroke="#4682b4" stroke-width="4" />
+      </svg>
+    </div>
+
+    <div class="section-container">
+      <h2 class="section-title text-blue" data-text="THE SBR RACE TRACK">THE SBR RACE TRACK</h2>
+      <p class="section-tagline">"A cross-country struggle. Every milestone is a checkpoint towards the final goal."</p>
+
+      <div class="race-track-wrapper">
+        <!-- Visual Winding Track Path (SVG) -->
+        <div class="svg-track-line-container">
+          <svg class="track-path-svg" viewBox="0 0 100 1200" preserveAspectRatio="none">
+            <path id="race-path" d="M50,0 Q80,150 20,300 T80,600 T20,900 T50,1200" fill="none" stroke="#111" stroke-width="4" stroke-dasharray="10 10" />
+            <path d="M50,0 Q80,150 20,300 T80,600 T20,900 T50,1200" fill="none" stroke="#d4af37" stroke-width="1" />
+          </svg>
+        </div>
+
+        <!-- Timeline Cards List -->
+        <div class="timeline-events">
+          <!-- Card 1 -->
+          <div class="timeline-card-wrapper left-card" style="--node-top: 15%;">
+            <!-- Timeline Node (Star/Horseshoe) -->
+            <div class="timeline-node" data-node="star">
+              <svg class="node-icon" viewBox="0 0 24 24">
+                <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" fill="#d4af37" stroke="#111" stroke-width="2"/>
+              </svg>
+              <div class="node-label">STAGE 1</div>
+            </div>
+            
+            <div class="manga-panel-card">
+              <div class="card-screentone"></div>
+              <div class="card-panel-image">
+                <img src="./assect/10133167907038440.jpg" alt="Stage 1 Milestone">
+                <div class="panel-border-ink"></div>
+              </div>
+              <div class="card-content">
+                <div class="card-date">STAGE 1: THE STARTING LINE</div>
+                <h3 class="card-title">Foundations of Computation</h3>
+                <p class="card-text">Began the journey in deep computing. Mastered algorithms, structural complexity, and mathematical model development. Earned academic distinction in Computer Science.</p>
+                <div class="card-sfx">ドドドド</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="timeline-card-wrapper right-card" style="--node-top: 40%;">
+            <div class="timeline-node" data-node="horseshoe">
+              <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4,4 C4,14 8,20 12,20 C16,20 20,14 20,4" />
+                <circle cx="6" cy="7" r="1.5" fill="#111" />
+                <circle cx="18" cy="7" r="1.5" fill="#111" />
+                <circle cx="9" cy="14" r="1.5" fill="#111" />
+                <circle cx="15" cy="14" r="1.5" fill="#111" />
+              </svg>
+              <div class="node-label">STAGE 2</div>
+            </div>
+
+            <div class="manga-panel-card">
+              <div class="card-screentone"></div>
+              <div class="card-panel-image">
+                <img src="./assect/39054721768333586.jpg" alt="Stage 2 Milestone">
+                <div class="panel-border-ink"></div>
+              </div>
+              <div class="card-content">
+                <div class="card-date">STAGE 2: THE GOLDEN RATIO</div>
+                <h3 class="card-title">Athletic Apex &amp; Combat Arts</h3>
+                <p class="card-text">Applied the principles of kinetic energy and the Golden Spiral to athletic training. Completed intensive Greco-Roman wrestling campaigns, mastering close combat leverage, mental grit, and physical power outputs.</p>
+                <div class="card-sfx">メメタァ!</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="timeline-card-wrapper left-card" style="--node-top: 65%;">
+            <div class="timeline-node" data-node="star">
+              <svg class="node-icon" viewBox="0 0 24 24">
+                <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" fill="#d4af37" stroke="#111" stroke-width="2"/>
+              </svg>
+              <div class="node-label">STAGE 3</div>
+            </div>
+
+            <div class="manga-panel-card">
+              <div class="card-screentone"></div>
+              <div class="card-panel-image">
+                <img src="./assect/15410823722530446.jpg" alt="Stage 3 Milestone">
+                <div class="panel-border-ink"></div>
+              </div>
+              <div class="card-content">
+                <div class="card-date">STAGE 3: BREAKING LIMITS</div>
+                <h3 class="card-title">Autonomous Agent Engineering</h3>
+                <p class="card-text">Architected next-generation multi-agent systems designed to perform complex research operations. Integrated LLMs with custom sandboxed execution tools, mirroring an autonomous developer workflow.</p>
+                <div class="card-sfx-pink">オラオラ</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="timeline-card-wrapper right-card" style="--node-top: 90%;">
+            <div class="timeline-node" data-node="horseshoe">
+              <svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4,4 C4,14 8,20 12,20 C16,20 20,14 20,4" />
+                <circle cx="6" cy="7" r="1.5" fill="#111" />
+                <circle cx="18" cy="7" r="1.5" fill="#111" />
+                <circle cx="9" cy="14" r="1.5" fill="#111" />
+                <circle cx="15" cy="14" r="1.5" fill="#111" />
+              </svg>
+              <div class="node-label">STAGE 4</div>
+            </div>
+
+            <div class="manga-panel-card mob-card">
+              <div class="card-screentone"></div>
+              <div class="card-panel-image">
+                <img src="./assect/Mob psycho 100.jpg" alt="Stage 4 Milestone">
+                <div class="panel-border-ink"></div>
+              </div>
+              <div class="card-content">
+                <div class="card-date">STAGE 4: 100% LIMITER BREAK</div>
+                <h3 class="card-title">Psychic Engineering Surge</h3>
+                <p class="card-text">Releasing absolute potential. Achieving full-stack mastery, scaling cloud endpoints to handle peak loads, and crafting robust user interfaces with hyper-interactive animations.</p>
+                <div class="card-sfx-pink purple-sfx">100%!!!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Accounts & Contact (The Final Showdown) -->
+  <section id="contact" class="contact-section">
+    <!-- Diagonal Divider -->
+    <div class="diagonal-divider-bottom">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,0 L1440,70 L1440,100 L0,100 Z" fill="#111" />
+        <path d="M0,5 L1440,75" stroke="#d4af37" stroke-width="3" />
+      </svg>
+    </div>
+
+    <div class="section-container">
+      <div class="showdown-box">
+        <div class="showdown-bg-wrapper">
+          <canvas id="showdown-canvas" class="showdown-speed-canvas"></canvas>
+          <div class="manga-screentone"></div>
+          <img src="./assect/JOJO.jpg" alt="Showdown Background Manga Art" class="showdown-bg-img">
+        </div>
+
+        <div class="showdown-header">
+          <h2 class="section-title text-gold" data-text="THE FINAL SHOWDOWN">THE FINAL SHOWDOWN</h2>
+        </div>
+
+        <!-- Social Buttons Grid (Clean Professional SBR Pills) -->
+        <div class="showdown-buttons">
+          <a href="https://github.com/Saras-Kashyap" target="_blank" rel="noopener" class="showdown-btn github-btn">
+            <svg class="showdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <span class="btn-text">GitHub</span>
+            <div class="social-preview-tooltip">
+              <div class="tooltip-header">
+                <img src="./assect/80361174595084386.jpg" alt="GitHub Portrait" class="tooltip-avatar">
+                <div class="tooltip-title-group">
+                  <div class="tooltip-name">Saras Kashyap</div>
+                  <div class="tooltip-handle">@Saras-Kashyap</div>
+                </div>
+              </div>
+              <div class="tooltip-divider"></div>
+              <div class="tooltip-body">
+                <div class="tooltip-stat-item"><strong>REPOSITORIES:</strong> 40+</div>
+                <div class="tooltip-stat-item"><strong>CONTRIBUTIONS:</strong> 1,200+</div>
+                <div class="tooltip-stat-item"><strong>STATUS:</strong> ACTIVE DEVELOPER</div>
+              </div>
+              <div class="tooltip-footer">Click to inspect code</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/saras-kashyap-62a0bb326" target="_blank" rel="noopener" class="showdown-btn linkedin-btn">
+            <svg class="showdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span class="btn-text">LinkedIn</span>
+            <div class="social-preview-tooltip">
+              <div class="tooltip-header">
+                <img src="./assect/80361174595084386.jpg" alt="LinkedIn Portrait" class="tooltip-avatar">
+                <div class="tooltip-title-group">
+                  <div class="tooltip-name">Saras Kashyap</div>
+                  <div class="tooltip-handle">AI Engineer & Fullstack Dev</div>
+                </div>
+              </div>
+              <div class="tooltip-divider"></div>
+              <div class="tooltip-body">
+                <div class="tooltip-stat-item"><strong>ROLE:</strong> AI Engineer &amp; Fullstack Dev</div>
+                <div class="tooltip-stat-item"><strong>FOCUS:</strong> LLMs, RAG, React, Next.js</div>
+                <div class="tooltip-stat-item"><strong>NETWORK:</strong> CONNECTED</div>
+              </div>
+              <div class="tooltip-footer">Click to view profile</div>
+            </div>
+          </a>
+          <a href="https://leetcode.com/u/Saras_kashyap/" target="_blank" rel="noopener" class="showdown-btn leetcode-btn">
+            <svg class="showdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+            <span class="btn-text">LeetCode</span>
+            <div class="social-preview-tooltip">
+              <div class="tooltip-header">
+                <img src="./assect/mob psycho 100 _ reigen icon.jpg" alt="LeetCode Portrait" class="tooltip-avatar">
+                <div class="tooltip-title-group">
+                  <div class="tooltip-name">Saras Kashyap</div>
+                  <div class="tooltip-handle">@SarasKashyap</div>
+                </div>
+              </div>
+              <div class="tooltip-divider"></div>
+              <div class="tooltip-body">
+                <div class="tooltip-stat-item"><strong>SOLVED:</strong> 350+ PROBLEMS</div>
+                <div class="tooltip-stat-item"><strong>RATING:</strong> TOP 5% RANK</div>
+                <div class="tooltip-stat-item"><strong>FOCUS:</strong> ALGORITHMS</div>
+              </div>
+              <div class="tooltip-footer">Click to view stats</div>
+            </div>
+          </a>
+          <a href="mailto:saraskashyap@gmail.com" class="showdown-btn email-btn">
+            <svg class="showdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="btn-text">Email</span>
+            <div class="social-preview-tooltip">
+              <div class="tooltip-header">
+                <img src="./assect/10133167907038440.jpg" alt="Email Portrait" class="tooltip-avatar">
+                <div class="tooltip-title-group">
+                  <div class="tooltip-name">Direct Contact</div>
+                  <div class="tooltip-handle">saraskashyap@gmail.com</div>
+                </div>
+              </div>
+              <div class="tooltip-divider"></div>
+              <div class="tooltip-body">
+                <div class="tooltip-stat-item"><strong>RESPONSE RATE:</strong> FAST</div>
+                <div class="tooltip-stat-item"><strong>PREFERENCE:</strong> INBOX</div>
+                <div class="tooltip-stat-item"><strong>GRAVITY:</strong> HIGH</div>
+              </div>
+              <div class="tooltip-footer">Click to send email</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky audio/ambient toggler & return to top -->
+  <footer class="bottom-bar">
+    <div class="scroll-top-btn" id="scroll-top-btn">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+      <span>TOP</span>
+    </div>
+  </footer>
+
+  <script src="./script.js" type="module"></script>
+</body>
+</html>

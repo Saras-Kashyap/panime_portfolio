@@ -1,0 +1,14 @@
+{
+  "name": "sbr-portfolio",
+  "version": "1.0.0",
+  "description": "Steel Ball Run inspired portfolio website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
